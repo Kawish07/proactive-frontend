@@ -60,7 +60,7 @@ const Services = () => {
       {/* All Service Cards */}
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {Object.entries(serviceData).map(([key, service], idx) => (
-          <Link to={`/service/${key}`} key={key} className="block">
+          <Link to={`/services/${key}`} key={key} className="block">
             <div className="relative group overflow-hidden rounded-2xl shadow-lg transition-all duration-500 h-80 hover:scale-105 z-10">
               <div className="absolute inset-0 bg-cover bg-center transition-all duration-500" style={{ backgroundImage: `url(${service.heroImage})` }}></div>
               <div className="absolute inset-0 bg-black/50 transition-all duration-500 group-hover:bg-black/40"></div>
