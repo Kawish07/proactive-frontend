@@ -29,6 +29,7 @@ const serviceDetails = {
     phone: '01753 428500',
   },
 };
+
 const locationAreas = [
   { name: "London", id: "london" },
   { name: "Surrey", id: "surrey" },
@@ -52,9 +53,22 @@ const HeroSection = ({
   showQuoteButton = true
 }) => {
   const [selectedService, setSelectedService] = useState('commercial');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isLocationsOpen, setIsLocationsOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsServicesOpen(false);
+    setIsLocationsOpen(false);
+  };
 
   return (
-    <section className="relative h-screen overflow-hidden rounded-3xl mx-4 my-4 ">
+    <section className="relative h-screen overflow-hidden rounded-3xl mx-4 my-4">
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -65,8 +79,9 @@ const HeroSection = ({
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col">
-        {/* Single Navigation Bar */}
-        <nav className="px-8 py-8 flex items-center justify-between" style={{ backgroundColor: '#02294D' }}>
+        {/* Navigation Bar */}
+        <nav className="px-4 sm:px-8 py-4 sm:py-8 flex items-center justify-between" style={{ backgroundColor: '#02294D' }}>
+          {/* Logo */}
           <div className="flex items-center">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
@@ -75,20 +90,21 @@ const HeroSection = ({
                 </div>
               </div>
               <div className="text-white">
-                <div className="font-bold text-xl">
+                <div className="font-bold text-lg sm:text-xl">
                   <span className="text-green-400">PROACTIVE</span>
                 </div>
-                <div className="font-bold text-xl -mt-1">
+                <div className="font-bold text-lg sm:text-xl -mt-1">
                   <span className="text-white">CLEANERS</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
             <Link
               to="/"
-              className={`text-white hover:text-green-300 transition-colors font-medium cursor-pointer text-green-400`}
+              className="text-green-400 hover:text-green-300 transition-colors font-medium cursor-pointer"
             >
               Home
             </Link>
@@ -111,7 +127,7 @@ const HeroSection = ({
                 </svg>
               </Link>
 
-              {/* Dropdown Menu */}
+              {/* Desktop Services Dropdown Menu */}
               <div className="absolute top-full right-0 mt-2 w-[800px] bg-white rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
                 <div className="flex min-h-[400px]">
                   {/* Left Side - Service Categories */}
@@ -138,7 +154,6 @@ const HeroSection = ({
 
                   {/* Right Side - Main Content */}
                   <div className="w-2/3 p-8">
-                    {/* Header with selected service */}
                     <div className="mb-6">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -164,71 +179,28 @@ const HeroSection = ({
                       </div>
                     </div>
 
-                    {/* Sector Icons Grid - Three Rows */}
+                    {/* Sector Icons Grid */}
                     <div className="space-y-4">
-                      {/* First Row */}
                       <div className="grid grid-cols-4 gap-4">
-                        <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
-                          <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
-                            <div className="w-4 h-4 bg-white rounded-sm"></div>
+                        {['Factory', 'Retail', 'School', 'Hospitality'].map((sector) => (
+                          <div key={sector} className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
+                            <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
+                              <div className="w-4 h-4 bg-white rounded-sm"></div>
+                            </div>
+                            <div className="text-sm font-medium text-gray-700">{sector}</div>
                           </div>
-                          <div className="text-sm font-medium text-gray-700">Factory</div>
-                        </div>
-
-                        <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
-                          <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
-                            <div className="w-4 h-4 bg-white rounded-sm"></div>
-                          </div>
-                          <div className="text-sm font-medium text-gray-700">Retail</div>
-                        </div>
-
-                        <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
-                          <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
-                            <div className="w-4 h-4 bg-white rounded-sm"></div>
-                          </div>
-                          <div className="text-sm font-medium text-gray-700">School</div>
-                        </div>
-
-                        <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
-                          <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
-                            <div className="w-4 h-4 bg-white rounded-sm"></div>
-                          </div>
-                          <div className="text-sm font-medium text-gray-700">Hospitality</div>
-                        </div>
+                        ))}
                       </div>
-
-                      {/* Second Row */}
                       <div className="grid grid-cols-4 gap-4">
-                        <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
-                          <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
-                            <div className="w-4 h-4 bg-white rounded-sm"></div>
+                        {['Office', 'Warehouse', 'Leisure', 'University'].map((sector) => (
+                          <div key={sector} className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
+                            <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
+                              <div className="w-4 h-4 bg-white rounded-sm"></div>
+                            </div>
+                            <div className="text-sm font-medium text-gray-700">{sector}</div>
                           </div>
-                          <div className="text-sm font-medium text-gray-700">Office</div>
-                        </div>
-
-                        <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
-                          <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
-                            <div className="w-4 h-4 bg-white rounded-sm"></div>
-                          </div>
-                          <div className="text-sm font-medium text-gray-700">Warehouse</div>
-                        </div>
-
-                        <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
-                          <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
-                            <div className="w-4 h-4 bg-white rounded-sm"></div>
-                          </div>
-                          <div className="text-sm font-medium text-gray-700">Leisure</div>
-                        </div>
-
-                        <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
-                          <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
-                            <div className="w-4 h-4 bg-white rounded-sm"></div>
-                          </div>
-                          <div className="text-sm font-medium text-gray-700">University</div>
-                        </div>
+                        ))}
                       </div>
-
-                      {/* Third Row - Data Centre */}
                       <div className="grid grid-cols-4 gap-4">
                         <div className="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors cursor-pointer">
                           <div className="w-8 h-8 mx-auto bg-green-500 rounded mb-2 flex items-center justify-center">
@@ -255,16 +227,14 @@ const HeroSection = ({
                 </svg>
               </Link>
 
-              {/* Locations Dropdown Menu */}
+              {/* Desktop Locations Dropdown Menu */}
               <div className="absolute top-full right-0 mt-2 w-[1000px] bg-white rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
                 <div className="p-8">
-                  {/* Header */}
                   <div className="text-center mb-8">
                     <h3 className="text-3xl font-bold text-gray-800 mb-2">Areas We Cover</h3>
                     <p className="text-gray-600">Professional cleaning services throughout South East England</p>
                   </div>
 
-                  {/* Horizontal Location Areas */}
                   <div className="grid grid-cols-6 gap-4 mb-8">
                     {locationAreas.map((location, index) => (
                       <Link
@@ -282,7 +252,6 @@ const HeroSection = ({
                     ))}
                   </div>
 
-                  {/* Featured Coverage Information */}
                   <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-6 border border-blue-100">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-4">
@@ -301,38 +270,18 @@ const HeroSection = ({
                     </div>
 
                     <p className="text-gray-700 mb-6 leading-relaxed">
-                      Our commitment to excellence has earned us a reputation as the go-to provider of top-quality extreme cleaning services throughout the South East of England. We provide reliable, professional cleaning services to residential, commercial, and specialist sectors across all covered areas.
+                      Our commitment to excellence has earned us a reputation as the go-to provider of top-quality extreme cleaning services throughout the South East of England.
                     </p>
 
-                    {/* Service Highlights */}
                     <div className="grid grid-cols-4 gap-4 mb-6">
-                      <div className="bg-white/50 p-4 rounded-lg text-center hover:bg-white/80 transition-colors">
-                        <div className="w-10 h-10 mx-auto bg-green-500 rounded-full flex items-center justify-center mb-2">
-                          <div className="w-5 h-5 bg-white rounded"></div>
+                      {['Emergency Response', 'Fully Insured', '24/7 Available', 'Expert Team'].map((service, idx) => (
+                        <div key={idx} className="bg-white/50 p-4 rounded-lg text-center hover:bg-white/80 transition-colors">
+                          <div className={`w-10 h-10 mx-auto ${idx === 0 ? 'bg-green-500' : idx === 1 ? 'bg-blue-500' : idx === 2 ? 'bg-purple-500' : 'bg-orange-500'} rounded-full flex items-center justify-center mb-2`}>
+                            <div className="w-5 h-5 bg-white rounded"></div>
+                          </div>
+                          <div className="text-sm font-medium text-gray-700">{service}</div>
                         </div>
-                        <div className="text-sm font-medium text-gray-700">Emergency Response</div>
-                      </div>
-
-                      <div className="bg-white/50 p-4 rounded-lg text-center hover:bg-white/80 transition-colors">
-                        <div className="w-10 h-10 mx-auto bg-blue-500 rounded-full flex items-center justify-center mb-2">
-                          <div className="w-5 h-5 bg-white rounded"></div>
-                        </div>
-                        <div className="text-sm font-medium text-gray-700">Fully Insured</div>
-                      </div>
-
-                      <div className="bg-white/50 p-4 rounded-lg text-center hover:bg-white/80 transition-colors">
-                        <div className="w-10 h-10 mx-auto bg-purple-500 rounded-full flex items-center justify-center mb-2">
-                          <div className="w-5 h-5 bg-white rounded"></div>
-                        </div>
-                        <div className="text-sm font-medium text-gray-700">24/7 Available</div>
-                      </div>
-
-                      <div className="bg-white/50 p-4 rounded-lg text-center hover:bg-white/80 transition-colors">
-                        <div className="w-10 h-10 mx-auto bg-orange-500 rounded-full flex items-center justify-center mb-2">
-                          <div className="w-5 h-5 bg-white rounded"></div>
-                        </div>
-                        <div className="text-sm font-medium text-gray-700">Expert Team</div>
-                      </div>
+                      ))}
                     </div>
 
                     <div className="flex justify-between items-center">
@@ -356,6 +305,7 @@ const HeroSection = ({
                 </div>
               </div>
             </div>
+
             <Link
               to="/sector"
               className="text-white hover:text-green-300 transition-colors font-medium cursor-pointer"
@@ -376,17 +326,181 @@ const HeroSection = ({
             </Link>
           </div>
 
-          <button className="md:hidden text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          {/* Mobile Menu Button */}
+          <button 
+            className="lg:hidden text-white z-50 relative"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
+          >
+            <svg 
+              className={`w-6 h-6 transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
         </nav>
 
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div 
+            className="lg:hidden fixed inset-0 bg-black/50 z-40"
+            onClick={closeMobileMenu}
+          />
+        )}
+
+        {/* Mobile Menu */}
+        <div className={`lg:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-[#02294D] z-50 transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          <div className="flex flex-col h-full">
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between p-4 border-b border-blue-700/30">
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-4 h-4 bg-blue-600 rounded-full relative">
+                    <div className="absolute top-0.5 left-0.5 w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                  </div>
+                </div>
+                <div className="text-white">
+                  <div className="font-bold text-sm">
+                    <span className="text-green-400">PROACTIVE</span>
+                  </div>
+                  <div className="font-bold text-sm -mt-0.5">
+                    <span className="text-white">CLEANERS</span>
+                  </div>
+                </div>
+              </div>
+              <button 
+                onClick={closeMobileMenu}
+                className="text-white p-2"
+                aria-label="Close mobile menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Menu Items */}
+            <div className="flex-1 overflow-y-auto px-4 py-6">
+              <div className="space-y-6">
+                <Link
+                  to="/"
+                  className="block text-green-400 hover:text-green-300 transition-colors font-medium text-lg"
+                  onClick={closeMobileMenu}
+                >
+                  Home
+                </Link>
+                
+                <Link
+                  to="/about"
+                  className="block text-white hover:text-green-300 transition-colors font-medium text-lg"
+                  onClick={closeMobileMenu}
+                >
+                  About Us
+                </Link>
+
+                {/* Mobile Services Section */}
+                <div>
+                  <button
+                    onClick={() => setIsServicesOpen(!isServicesOpen)}
+                    className="flex items-center justify-between w-full text-white hover:text-green-300 transition-colors font-medium text-lg"
+                  >
+                    Services
+                    <svg className={`w-5 h-5 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  {isServicesOpen && (
+                    <div className="mt-4 pl-4 space-y-3 border-l border-blue-700/30">
+                      {Object.keys(serviceDetails).map((key) => (
+                        <Link
+                          key={key}
+                          to={`/services/${key}`}
+                          className="block text-blue-200 hover:text-green-300 transition-colors"
+                          onClick={closeMobileMenu}
+                        >
+                          {serviceDetails[key].title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Mobile Locations Section */}
+                <div>
+                  <button
+                    onClick={() => setIsLocationsOpen(!isLocationsOpen)}
+                    className="flex items-center justify-between w-full text-white hover:text-green-300 transition-colors font-medium text-lg"
+                  >
+                    Locations
+                    <svg className={`w-5 h-5 transition-transform ${isLocationsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  {isLocationsOpen && (
+                    <div className="mt-4 pl-4 space-y-3 border-l border-blue-700/30 max-h-40 overflow-y-auto">
+                      {locationAreas.map((location, index) => (
+                        <Link
+                          key={index}
+                          to={`/location/${location.id}`}
+                          className="block text-blue-200 hover:text-green-300 transition-colors"
+                          onClick={closeMobileMenu}
+                        >
+                          {location.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                
+                <Link
+                  to="/sector"
+                  className="block text-white hover:text-green-300 transition-colors font-medium text-lg"
+                  onClick={closeMobileMenu}
+                >
+                  Sectors
+                </Link>
+                
+                <Link
+                  to="/contact"
+                  className="block text-white hover:text-green-300 transition-colors font-medium text-lg"
+                  onClick={closeMobileMenu}
+                >
+                  Contact
+                </Link>
+              </div>
+            </div>
+
+            {/* Mobile Menu Footer */}
+            <div className="p-4 border-t border-blue-700/30">
+              <Link
+                to="/quote"
+                className="block w-full bg-green-400 hover:bg-green-500 text-[#02294D] font-bold py-3 px-6 rounded-full shadow transition text-center"
+                onClick={closeMobileMenu}
+              >
+                Get a Quote ↗
+              </Link>
+              <div className="mt-4 text-center text-blue-200 text-sm">
+                📞 01753 428100
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Main Content with Glassy Sidebar */}
         <div className="flex-grow flex items-center relative">
-          {/* Smaller Glassy Sidebar - Middle Left */}
-          <div className="hidden lg:flex absolute right-40 top-1/2 transform -translate-y-1/2 w-48 bg-white/10 backdrop-blur-lg rounded-lg p-6 border border-white/20">
+          {/* Glassy Sidebar - Hidden on mobile and tablet */}
+          <div className="hidden xl:flex absolute right-40 top-1/2 transform -translate-y-1/2 w-48 bg-white/10 backdrop-blur-lg rounded-lg p-6 border border-white/20">
             <div className="space-y-6">
               {[
                 'Customer Satisfaction',
@@ -406,26 +520,25 @@ const HeroSection = ({
           </div>
 
           {/* Hero Content */}
-          <div className="max-w-2xl text-white px-8 ml-auto mr-auto lg:mr-0 lg:ml-48">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <div className="max-w-2xl text-white px-4 sm:px-8 ml-auto mr-auto xl:mr-0 xl:ml-48">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold leading-tight mb-4 sm:mb-6">
               {title}
             </h1>
-            <h2 className="text-3xl md:text-4xl font-bold text-green-300 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-300 mb-4 sm:mb-6">
               {subtitle}
             </h2>
-            <p className="text-lg md:text-xl mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 leading-relaxed">
               {description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               {showQuoteButton && (
                 <Link
                   to="/quote"
-                  className="ml-6 bg-[#02294D] hover:bg-green-500 text-white font-bold py-2 px-6 rounded-full shadow transition flex items-center gap-2"
+                  className="bg-[#02294D] hover:bg-green-500 text-white font-bold py-3 px-6 rounded-full shadow transition flex items-center justify-center gap-2 text-center"
                 >
                   Get a Quote <span aria-hidden="true">↗</span>
                 </Link>
               )}
-              {/* WhatsApp button removed, only floating button in App.jsx */}
             </div>
           </div>
         </div>
