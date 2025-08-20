@@ -3,7 +3,7 @@ import HeroSection from '../components/HeroSection';
 import { Phone, ArrowUpRight, User, CheckCircle } from 'lucide-react';
 
 // Unique background image for About page hero section
-const aboutHeroBg = 'https://images.unsplash.com/photo-1465101178521-c1a2b1c6413c?auto=format&fit=crop&w=1800&q=80';
+const aboutHeroBg = 'https://media.istockphoto.com/id/1369817617/photo/professional-housecleaner-at-work.webp?a=1&b=1&s=612x612&w=0&k=20&c=2KfsO9j92S5nE8Cd-WolhPTRtUz7WHLdN7c93ohXQJY=';
 const sectors = [
   'Residential',
   'Commercial',

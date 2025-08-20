@@ -424,7 +424,7 @@ const HeroSection = ({
                       {Object.keys(serviceDetails).map((key) => (
                         <Link
                           key={key}
-                          to={`/services/${key}`}
+                          to="/services"
                           className="block text-blue-200 hover:text-green-300 transition-colors"
                           onClick={closeMobileMenu}
                         >

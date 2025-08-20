@@ -2,7 +2,7 @@ import React from 'react';
 import HeroSection from '../components/HeroSection';
 
 const SectorsCTA = () => {
-  const sectorHeroBg = 'https://images.unsplash.com/photo-1465101178521-c1a2b1c6413c?auto=format&fit=crop&w=1800&q=80';
+  const sectorHeroBg = 'https://images.unsplash.com/photo-1610651228633-cf6682a4fe6b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHByb2FjdGl2ZSUyMGNsZWFuZXIlMjBzZWN0b3J8ZW58MHx8MHx8fDA%3D';
 
   return (
     <div className="w-full bg-gray-100">
