@@ -93,7 +93,7 @@ const FAQSection = () => {
                 {/* Main Image */}
                 <div className="relative rounded-3xl overflow-hidden">
                   <img 
-                    src="/api/placeholder/600/400" 
+                    src="https://plus.unsplash.com/premium_photo-1661663379320-213541539ec8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29tbWVyY2lhbCUyMGNsZWFuaW5nJTIwd29ya3NwYWNlfGVufDB8fDB8fHww" 
                     alt="Commercial cleaning workspace"
                     className="w-full h-96 object-cover"
                   />

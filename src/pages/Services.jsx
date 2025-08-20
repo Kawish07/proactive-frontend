@@ -51,10 +51,7 @@ const Services = () => {
             <p className="text-lg md:text-xl mb-8 leading-relaxed">Explore our full range of cleaning services for commercial, property, construction, specialist, and disinfection needs. Click any card below to learn more about each service.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/quote" className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-bold transition-colors">Get a Quote</Link>
-              <a href="https://wa.me/01753428100" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-lg font-bold transition-colors border border-white/30">
-                <Phone className="w-5 h-5" />
-                Call Us
-              </a>
+              {/* WhatsApp button removed, only floating button in App.jsx */}
             </div>
           </div>
         </div>

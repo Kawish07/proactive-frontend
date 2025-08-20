@@ -425,17 +425,7 @@ const HeroSection = ({
                   Get a Quote <span aria-hidden="true">↗</span>
                 </Link>
               )}
-              <a
-                href="https://wa.me/447123456789" // Replace with your WhatsApp number
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300"
-              >
-                Call Us
-                <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16.72 11.06a6 6 0 11-8.48-8.48 6 6 0 018.48 8.48z" />
-                </svg>
-              </a>
+              {/* WhatsApp button removed, only floating button in App.jsx */}
             </div>
           </div>
         </div>

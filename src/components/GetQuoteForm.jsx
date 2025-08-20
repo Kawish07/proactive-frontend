@@ -44,8 +44,8 @@ export default function GetQuoteForm() {
 
   return (
     <div>
-      <div className="w-full max-w-md mx-auto">
-        <div className="bg-[#02294D] rounded-2xl p-6 border border-blue-700/30 shadow-2xl overflow-y-auto" style={{maxHeight: '80vh'}}>
+      <div className="w-full max-w-6xl mx-auto px-4">
+        <div className="bg-[#02294D] rounded-2xl p-6 border border-blue-700/30 shadow-2xl overflow-y-auto" style={{ maxHeight: '80vh' }}>
           <h1 className="text-3xl font-bold text-white text-center mb-6">Get a Quote</h1>
           <div className="space-y-6">
             {/* First row - Name, Email, Phone */}
@@ -156,11 +156,10 @@ export default function GetQuoteForm() {
                   className="sr-only"
                   required
                 />
-                <div className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all duration-200 ${
-                  formData.agreedToPolicy 
-                    ? 'bg-blue-500 border-blue-500' 
+                <div className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all duration-200 ${formData.agreedToPolicy
+                    ? 'bg-blue-500 border-blue-500'
                     : 'border-blue-400 bg-transparent'
-                }`}>
+                  }`}>
                   {formData.agreedToPolicy && (
                     <CheckCircle className="w-4 h-4 text-white" />
                   )}

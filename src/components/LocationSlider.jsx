@@ -39,7 +39,7 @@ const LocationSlider = () => {
     {
       name: "Kent",
       id: "kent",
-      image: "https://images.unsplash.com/photo-1520637836862-4d197d17c559?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "https://images.unsplash.com/photo-1602928871837-c6da1acfc1b8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGtlbnR8ZW58MHx8MHx8fDA%3D"
     },
     {
       name: "Essex",
