@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "autoprefixer": "^10.4.21",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.539.0",
     "postcss": "^8.5.6",

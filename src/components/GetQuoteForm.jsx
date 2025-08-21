@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 export default function GetQuoteForm() {
   const [formData, setFormData] = useState({
@@ -26,19 +27,34 @@ export default function GetQuoteForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      await emailjs.send(
+        'service_0bsp86f',
+        'template_zxq6mrs',
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          postcode: formData.postcode,
+          service: formData.service,
+          message: formData.message
+        },
+        'unLnuQ0vpWGog3kVz'
+      );
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        postcode: '',
+        service: '',
+        message: '',
+        agreedToPolicy: true
       });
-      if (response.ok) {
-        setShowSuccess(true);
-        setTimeout(() => setShowSuccess(false), 3000);
-      } else {
-        // Handle error
-      }
     } catch (err) {
-      // Handle error
+      alert('Failed to send quote. Please try again.');
     }
   };
 
@@ -194,12 +210,14 @@ export default function GetQuoteForm() {
 
             {/* Submit button */}
             <div className="flex justify-start">
-              <button
-                onClick={handleSubmit}
-                className="bg-green-500 hover:bg-green-600 text-white font-semibold px-12 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-green-400/30"
-              >
-                Send
-              </button>
+              <form onSubmit={handleSubmit} className="w-full">
+                <button
+                  type="submit"
+                  className="bg-green-500 hover:bg-green-600 text-white font-semibold px-12 py-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-green-400/30"
+                >
+                  Send
+                </button>
+              </form>
             </div>
           </div>
         </div>

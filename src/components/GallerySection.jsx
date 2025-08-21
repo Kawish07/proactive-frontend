@@ -103,7 +103,7 @@ const GallerySection = () => {
         </div>
       </div>
 
-      <style jsx>{`
+  <style>{`
         @keyframes slide-left-to-right {
           0% {
             transform: translateX(-50%);
